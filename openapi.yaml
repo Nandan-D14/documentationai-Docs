@@ -1,0 +1,105 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Premium UI API
+  license:
+    name: MIT
+servers:
+  - url: https://api.premium-ui.com/v1
+paths:
+  /components:
+    get:
+      summary: List all components
+      operationId: listComponents
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: An paged array of components
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Components'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a component
+      operationId: createComponents
+      responses:
+        201:
+          description: Component created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /components/{componentId}:
+    get:
+      summary: Info for a specific component
+      operationId: showComponentById
+      parameters:
+        - name: componentId
+          in: path
+          required: true
+          description: The id of the component to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Component details and code examples
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Component'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Component:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+    Components:
+      type: array
+      items:
+        $ref: '#/components/schemas/Component'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

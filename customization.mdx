@@ -1,0 +1,219 @@
+---
+title: Customization
+description: Advanced customization options for Premium UI components
+---
+
+## Component Customization
+
+Premium UI components are highly customizable, allowing you to adapt them to your design system while maintaining consistency and performance.
+
+<Columns cols={2}>
+  <Card title="Styling" icon="palette" href="#styling">
+    Customize appearance with Tailwind classes and CSS variables.
+  </Card>
+  <Card title="Animation" icon="zap" href="#animation">
+    Modify animation behavior and timing with Framer Motion props.
+  </Card>
+</Columns>
+
+## Styling Customization
+
+Override default styles using Tailwind CSS classes and custom CSS properties.
+
+<Tabs>
+  <Tab title="Class Overrides" icon="code">
+    Use the className prop to apply custom Tailwind styles.
+    
+    ```jsx
+    import { Button } from 'premium-ui';
+    
+    function CustomButton() {
+      return (
+        <Button 
+          variant="primary"
+          className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+        >
+          Custom Styled Button
+        </Button>
+      );
+    }
+    ```
+  </Tab>
+  <Tab title="CSS Variables" icon="settings">
+    Override theme variables for consistent customization.
+    
+    ```css
+    :root {
+      --premium-primary: #3B82F6;
+      --premium-secondary: #64748B;
+      --premium-radius: 0.5rem;
+      --premium-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark {
+      --premium-primary: #60A5FA;
+      --premium-background: #1F2937;
+      --premium-text: #F9FAFB;
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Callout kind="info">
+  CSS variables are the recommended approach for theme-wide changes as they automatically update across all components.
+</Callout>
+
+## Animation Customization
+
+Fine-tune animations using Framer Motion properties and custom easing functions.
+
+<Steps>
+  <Step title="Basic Animation Props" icon="play">
+    Control animation timing and easing with standard props.
+    
+    ```jsx
+    import { Card } from 'premium-ui';
+    
+    function AnimatedCard() {
+      return (
+        <Card 
+          title="Animated Card"
+          animate={{ scale: 1 }}
+          initial={{ scale: 0.8, opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <p>Content with custom entrance animation.</p>
+        </Card>
+      );
+    }
+    ```
+  </Step>
+  <Step title="Hover Effects" icon="mouse-pointer">
+    Add interactive hover animations.
+    
+    ```jsx
+    import { Button } from 'premium-ui';
+    
+    function HoverButton() {
+      return (
+        <Button 
+          variant="primary"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        >
+          Interactive Button
+        </Button>
+      );
+    }
+    ```
+  </Step>
+  <Step title="Custom Easing" icon="activity">
+    Create custom easing curves for unique animations.
+    
+    ```jsx
+    import { motion } from 'framer-motion';
+    import { Card } from 'premium-ui';
+    
+    const customEase = [0.25, 0.46, 0.45, 0.94];
+    
+    function CustomEasingCard() {
+      return (
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: customEase }}
+        >
+          <Card title="Custom Easing" className="w-full">
+            <p>Card with custom easing curve animation.</p>
+          </Card>
+        </motion.div>
+      );
+    }
+    ```
+  </Step>
+</Steps>
+
+<Expandable title="Advanced Animation Techniques" default-open="false">
+  Combine multiple animation properties, use layout animations for dynamic content, and create staggered animations for lists and grids.
+</Expandable>
+
+## Component Extension
+
+Create custom variants and extend existing components for specific use cases.
+
+<CodeGroup tabs="Custom Variant,Extended Component">
+  ```jsx
+  // Creating a custom button variant
+  import { Button } from 'premium-ui';
+  
+  function CustomButton({ variant, ...props }) {
+    const variants = {
+      gradient: "bg-gradient-to-r from-blue-500 to-purple-600",
+      outline: "border-2 border-blue-500 text-blue-500 bg-transparent"
+    };
+    
+    return (
+      <Button 
+        className={variants[variant] || ""}
+        {...props}
+      />
+    );
+  }
+  
+  // Usage
+  <CustomButton variant="gradient">Gradient Button</CustomButton>
+  ```
+  ```jsx
+  // Extending a component with additional functionality
+  import { useState } from 'react';
+  import { Button } from 'premium-ui';
+  
+  function ToggleButton({ children, ...props }) {
+    const [isActive, setIsActive] = useState(false);
+    
+    return (
+      <Button 
+        variant={isActive ? "primary" : "secondary"}
+        onClick={() => setIsActive(!isActive)}
+        {...props}
+      >
+        {children}
+      </Button>
+    );
+  }
+  ```
+</CodeGroup>
+
+<Callout kind="tip">
+  When extending components, maintain the original API surface to ensure compatibility with existing code.
+</Callout>
+
+## Responsive Design
+
+Customize components for different screen sizes using responsive utilities.
+
+| Breakpoint | Class | Min Width |
+|------------|-------|-----------|
+| `sm` | `sm:` | 640px |
+| `md` | `md:` | 768px |
+| `lg` | `lg:` | 1024px |
+| `xl` | `xl:` | 1280px |
+| `2xl` | `2xl:` | 1536px |
+
+<ExpandableGroup>
+  <Expandable title="Mobile Optimization" default-open="false">
+    Components automatically adapt to mobile screens, but you can customize touch targets and spacing for better mobile experience.
+  </Expandable>
+  <Expandable title="Tablet Layouts" default-open="false">
+    Use responsive classes to create different layouts for tablet devices with intermediate screen sizes.
+  </Expandable>
+</ExpandableGroup>
+
+## Accessibility Customization
+
+Enhance accessibility features to meet specific requirements.
+
+<Callout kind="success">
+  All components include basic accessibility features, but you can add custom ARIA labels, keyboard navigation, and focus management.
+</Callout>

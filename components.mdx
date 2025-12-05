@@ -1,0 +1,175 @@
+---
+title: Components
+description: Explore the curated collection of Premium UI components
+---
+
+## Component Library Overview
+
+Premium UI offers a comprehensive collection of over 50 carefully selected React components, each designed with modern design principles and smooth animations. Our components are built using Tailwind CSS for styling and Framer Motion for animations, ensuring they integrate seamlessly with your existing projects.
+
+<Columns cols={3}>
+  <Card title="Buttons" icon="mouse-pointer" href="#buttons">
+    Interactive button components with various states and animations.
+  </Card>
+  <Card title="Cards" icon="layout" href="#cards">
+    Flexible card layouts for displaying content and information.
+  </Card>
+  <Card title="Forms" icon="edit" href="#forms">
+    Input fields and form elements with validation and feedback.
+  </Card>
+</Columns>
+
+## Buttons
+
+Our button collection includes animated variants for different use cases, from simple clicks to complex interactions.
+
+<Tabs>
+  <Tab title="Primary Button" icon="circle">
+    Standard primary action buttons with hover animations.
+    
+    ```jsx
+    import { Button } from 'premium-ui';
+    
+    function App() {
+      return (
+        <Button variant="primary" onClick={() => console.log('Clicked!')}>
+          Get Started
+        </Button>
+      );
+    }
+    ```
+  </Tab>
+  <Tab title="Loading Button" icon="loader">
+    Buttons with built-in loading states and progress indicators.
+    
+    ```jsx
+    import { LoadingButton } from 'premium-ui';
+    
+    function App() {
+      const [loading, setLoading] = useState(false);
+      
+      return (
+        <LoadingButton 
+          loading={loading} 
+          onClick={() => setLoading(true)}
+        >
+          Submit Form
+        </LoadingButton>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Callout kind="info">
+  All buttons support accessibility features including keyboard navigation and screen reader compatibility.
+</Callout>
+
+## Cards
+
+Card components provide flexible layouts for showcasing content, products, or user information with smooth hover effects.
+
+<CodeGroup tabs="Basic Card,Product Card">
+  ```jsx
+  import { Card } from 'premium-ui';
+  
+  function BasicCard() {
+    return (
+      <Card title="Project Title" subtitle="Project description">
+        <p>Detailed content about the project goes here.</p>
+      </Card>
+    );
+  }
+  ```
+  ```jsx
+  import { ProductCard } from 'premium-ui';
+  
+  function ProductDisplay() {
+    return (
+      <ProductCard 
+        image="/product.jpg"
+        title="Premium Widget"
+        price="$29.99"
+        rating={4.5}
+        onAddToCart={() => console.log('Added to cart')}
+      />
+    );
+  }
+  ```
+</CodeGroup>
+
+<Expandable title="Card Customization Options" default-open="false">
+  Customize card appearance with shadow variants, border radius options, and color schemes. Cards automatically adapt to light and dark themes.
+</Expandable>
+
+## Forms
+
+Form components include input fields, select dropdowns, and validation feedback with smooth animations.
+
+<Steps>
+  <Step title="Input Field" icon="type">
+    Text input with focus animations and error states.
+    
+    ```jsx
+    import { Input } from 'premium-ui';
+    
+    function LoginForm() {
+      return (
+        <Input 
+          label="Email Address"
+          type="email"
+          placeholder="user@example.com"
+          error="Please enter a valid email"
+        />
+      );
+    }
+    ```
+  </Step>
+  <Step title="Select Dropdown" icon="chevron-down">
+    Animated dropdown with search functionality.
+    
+    ```jsx
+    import { Select } from 'premium-ui';
+    
+    const options = [
+      { value: 'us', label: 'United States' },
+      { value: 'ca', label: 'Canada' },
+      { value: 'uk', label: 'United Kingdom' }
+    ];
+    
+    function CountrySelect() {
+      return (
+        <Select 
+          label="Country"
+          options={options}
+          placeholder="Select your country"
+        />
+      );
+    }
+    ```
+  </Step>
+</Steps>
+
+<ExpandableGroup>
+  <Expandable title="Form Validation" default-open="false">
+    Built-in validation with real-time feedback and custom validation rules.
+  </Expandable>
+  <Expandable title="Form Theming" default-open="false">
+    Consistent theming across all form elements with Tailwind CSS variables.
+  </Expandable>
+</ExpandableGroup>
+
+## Navigation Components
+
+Navigation elements for structuring your application with animated transitions.
+
+| Component | Description | Use Case |
+|-----------|-------------|----------|
+| `Navbar` | Responsive navigation bar | Main app navigation |
+| `Breadcrumb` | Path navigation | Multi-level page navigation |
+| `Tabs` | Tabbed content | Switching between content sections |
+| `Menu` | Dropdown menu | User actions and settings |
+
+<Callout kind="tip">
+  Navigation components include mobile-responsive designs and keyboard accessibility features.
+</Callout>

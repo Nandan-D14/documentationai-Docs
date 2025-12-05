@@ -1,0 +1,201 @@
+---
+title: Usage
+description: Learn how to integrate and use Premium UI components in your projects
+---
+
+## Getting Started with Premium UI
+
+Premium UI components are designed for easy integration into existing React projects. Each component is self-contained with its own dependencies and can be copied directly into your codebase.
+
+<Steps>
+  <Step title="Install Dependencies" icon="download">
+    Ensure you have the required packages installed in your project.
+    
+    ```bash
+    npm install tailwindcss framer-motion
+    # or
+    yarn add tailwindcss framer-motion
+    ```
+  </Step>
+  <Step title="Configure Tailwind" icon="settings">
+    Add Premium UI to your Tailwind CSS configuration.
+    
+    ```javascript
+    // tailwind.config.js
+    module.exports = {
+      content: [
+        "./src/**/*.{js,jsx,ts,tsx}",
+        "./node_modules/premium-ui/**/*.{js,jsx}"
+      ],
+      theme: {
+        extend: {
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out'
+          }
+        }
+      }
+    }
+    ```
+  </Step>
+  <Step title="Import and Use" icon="code">
+    Import components and start using them in your React components.
+  </Step>
+</Steps>
+
+<Callout kind="info">
+  All components include TypeScript definitions for better development experience and IDE support.
+</Callout>
+
+## Component Integration Patterns
+
+Premium UI components follow consistent patterns for props and styling, making them easy to integrate.
+
+<Tabs>
+  <Tab title="Basic Usage" icon="file-text">
+    Simple component usage with default props.
+    
+    ```jsx
+    import { Button, Card } from 'premium-ui';
+    
+    function MyComponent() {
+      return (
+        <Card title="Welcome" className="max-w-md">
+          <p>Get started with Premium UI components.</p>
+          <Button variant="primary">Learn More</Button>
+        </Card>
+      );
+    }
+    ```
+  </Tab>
+  <Tab title="With State" icon="database">
+    Components that integrate with React state and hooks.
+    
+    ```jsx
+    import { useState } from 'react';
+    import { Modal, Button } from 'premium-ui';
+    
+    function ModalExample() {
+      const [isOpen, setIsOpen] = useState(false);
+      
+      return (
+        <>
+          <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+          <Modal 
+            isOpen={isOpen} 
+            onClose={() => setIsOpen(false)}
+            title="Confirmation"
+          >
+            <p>Are you sure you want to proceed?</p>
+            <div className="flex gap-2 mt-4">
+              <Button variant="secondary" onClick={() => setIsOpen(false)}>
+                Cancel
+              </Button>
+              <Button variant="primary">Confirm</Button>
+            </div>
+          </Modal>
+        </>
+      );
+    }
+    ```
+  </Tab>
+  <Tab title="Custom Styling" icon="palette">
+    Override default styles with Tailwind classes.
+    
+    ```jsx
+    import { Button } from 'premium-ui';
+    
+    function CustomButton() {
+      return (
+        <Button 
+          variant="primary" 
+          className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+        >
+          Custom Gradient Button
+        </Button>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Expandable title="Advanced Integration" default-open="false">
+  For complex applications, components can be extended with custom hooks and context providers to share state and configuration across multiple components.
+</Expandable>
+
+## Theme Integration
+
+Premium UI components automatically adapt to your application's theme system.
+
+<CodeGroup tabs="Light Theme,Dark Theme">
+  ```jsx
+  // Light theme configuration
+  const lightTheme = {
+    colors: {
+      primary: '#3B82F6',
+      secondary: '#64748B',
+      background: '#FFFFFF',
+      text: '#1F2937'
+    }
+  };
+  
+  function App() {
+    return (
+      <ThemeProvider theme={lightTheme}>
+        <Button variant="primary">Light Theme</Button>
+      </ThemeProvider>
+    );
+  }
+  ```
+  ```jsx
+  // Dark theme configuration
+  const darkTheme = {
+    colors: {
+      primary: '#60A5FA',
+      secondary: '#94A3B8',
+      background: '#1F2937',
+      text: '#F9FAFB'
+    }
+  };
+  
+  function App() {
+    return (
+      <ThemeProvider theme={darkTheme}>
+        <Button variant="primary">Dark Theme</Button>
+      </ThemeProvider>
+    );
+  }
+  ```
+</CodeGroup>
+
+<Callout kind="tip">
+  Components use CSS custom properties for theming, allowing dynamic theme switching without component re-renders.
+</Callout>
+
+## Performance Considerations
+
+Premium UI is optimized for performance with efficient rendering and animation techniques.
+
+<ExpandableGroup>
+  <Expandable title="Animation Performance" default-open="false">
+    Components use GPU-accelerated transforms and avoid layout-triggering properties for smooth animations.
+  </Expandable>
+  <Expandable title="Bundle Size" default-open="false">
+    Tree-shaking friendly imports allow you to include only the components you need, minimizing bundle size.
+  </Expandable>
+</ExpandableGroup>
+
+## Troubleshooting
+
+Common issues and solutions when using Premium UI components.
+
+| Issue | Solution |
+|-------|----------|
+| Animations not working | Ensure Framer Motion is installed and imported |
+| Styles not applying | Check Tailwind CSS configuration includes Premium UI paths |
+| TypeScript errors | Verify component imports and prop types |
+| Theme not switching | Use ThemeProvider wrapper and CSS custom properties |
+
+<Callout kind="success">
+  For additional support, check our documentation or join our community Discord for help with integration.
+</Callout>

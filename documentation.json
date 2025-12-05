@@ -1,0 +1,81 @@
+{
+  "name": "Premium UI Documentation",
+  "initialRoute": "introduction",
+  "primaryColor": "#3B82F6",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "introduction",
+                "icon": "star"
+              }
+            ]
+          },
+          {
+            "group": "Components",
+            "icon": "code",
+            "pages": [
+              {
+                "title": "Component Library",
+                "path": "components",
+                "icon": "grid"
+              }
+            ]
+          },
+          {
+            "group": "Usage",
+            "icon": "terminal",
+            "pages": [
+              {
+                "title": "Integration Guide",
+                "path": "usage",
+                "icon": "settings"
+              }
+            ]
+          },
+          {
+            "group": "Advanced",
+            "icon": "zap",
+            "pages": [
+              {
+                "title": "Customization",
+                "path": "customization",
+                "icon": "palette"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Endpoints",
+            "icon": "terminal",
+            "openapi": "openapi.yaml"
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "clock",
+        "pages": [
+          {
+            "title": "Release History",
+            "path": "changelog",
+            "icon": "history"
+          }
+        ]
+      }
+    ]
+  }
+}
